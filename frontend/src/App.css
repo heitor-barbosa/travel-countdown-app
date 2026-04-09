@@ -1,0 +1,342 @@
+.page-shell {
+  min-height: 100vh;
+  padding: 0 20px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.page-shell::before,
+.page-shell::after {
+  content: '';
+  position: absolute;
+  border-radius: 999px;
+  pointer-events: none;
+  filter: blur(12px);
+}
+
+.page-shell::before {
+  width: 360px;
+  height: 360px;
+  top: 80px;
+  right: -120px;
+  background: radial-gradient(circle, rgba(255, 181, 116, 0.5), transparent 68%);
+}
+
+.page-shell::after {
+  width: 320px;
+  height: 320px;
+  left: -120px;
+  bottom: 40px;
+  background: radial-gradient(circle, rgba(92, 204, 213, 0.32), transparent 70%);
+}
+
+.site-header {
+  position: relative;
+  z-index: 2;
+}
+
+.site-header__inner {
+  width: min(1180px, 100%);
+  margin: 0 auto;
+  min-height: 88px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  border-bottom: 1px solid rgba(17, 90, 115, 0.1);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+}
+
+.brand-mark {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background:
+    radial-gradient(circle at 30% 28%, rgba(255, 255, 255, 0.72), transparent 28%),
+    linear-gradient(160deg, var(--sea) 8%, var(--teal) 58%, var(--sunset) 100%);
+  box-shadow: 0 12px 28px rgba(17, 90, 115, 0.16);
+}
+
+.brand-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.brand-copy strong {
+  color: var(--sea-deep);
+  font-size: 1rem;
+}
+
+.eyebrow {
+  color: var(--teal);
+  font-size: 0.72rem;
+  letter-spacing: 0.22rem;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.main-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.main-nav a {
+  color: var(--sea-deep);
+  text-decoration: none;
+  font-size: 0.95rem;
+  padding: 10px 4px;
+  position: relative;
+}
+
+.main-nav a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 4px;
+  width: 100%;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--sea), var(--sunset));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 180ms ease;
+}
+
+.main-nav a:hover::after {
+  transform: scaleX(1);
+}
+
+.hero-panel {
+  width: min(1180px, 100%);
+  min-height: calc(100vh - 108px);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-main {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(260px, 0.85fr) minmax(0, 1.7fr);
+  align-items: center;
+  gap: 34px;
+}
+
+.hero-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  padding-right: 12px;
+}
+
+.trip-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.54);
+  border: 1px solid rgba(17, 90, 115, 0.08);
+  color: var(--teal);
+  font-size: 0.82rem;
+  letter-spacing: 0.12rem;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.trip-date {
+  color: var(--muted);
+  font-size: 1.12rem;
+}
+
+.countdown-card {
+  padding: 24px;
+  border-radius: 34px;
+  background: rgba(255, 255, 255, 0.58);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow:
+    0 24px 60px rgba(17, 90, 115, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(18px);
+}
+
+.countdown-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.time-block {
+  min-height: 240px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 28px;
+  padding: 22px 12px;
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(242, 252, 255, 0.68)),
+    linear-gradient(150deg, rgba(92, 204, 213, 0.14), rgba(255, 204, 153, 0.12));
+  border: 1px solid rgba(17, 90, 115, 0.06);
+}
+
+.time-block::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.1), transparent 36%);
+  pointer-events: none;
+}
+
+.time-block::after {
+  content: '';
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  right: -36px;
+  bottom: -70px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(92, 204, 213, 0.18), transparent 66%);
+}
+
+.time-block__value {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-display);
+  font-size: clamp(3.2rem, 7vw, 6rem);
+  line-height: 0.85;
+  letter-spacing: -0.2rem;
+  color: var(--sea-deep);
+}
+
+.time-block__label {
+  position: relative;
+  z-index: 1;
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: 0.88rem;
+  letter-spacing: 0.22rem;
+  text-transform: uppercase;
+}
+
+.countdown-finished {
+  text-align: center;
+  padding: 44px 20px;
+}
+
+.countdown-finished h2 {
+  margin-top: 12px;
+}
+
+.countdown-finished__badge {
+  display: inline-flex;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: rgba(92, 204, 213, 0.14);
+  color: var(--teal);
+  font-size: 0.8rem;
+  letter-spacing: 0.12rem;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+@media (max-width: 980px) {
+  .site-header__inner {
+    min-height: 78px;
+  }
+
+  .hero-panel {
+    min-height: auto;
+    padding: 34px 0 0;
+  }
+
+  .hero-main {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .hero-copy {
+    align-items: center;
+    text-align: center;
+    padding-right: 0;
+  }
+
+  .countdown-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .time-block {
+    min-height: 170px;
+  }
+}
+
+@media (max-width: 720px) {
+  .page-shell {
+    padding: 0 12px 12px;
+  }
+
+  .site-header__inner {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 14px 0;
+  }
+
+  .main-nav {
+    width: 100%;
+    justify-content: flex-start;
+    gap: 14px;
+  }
+
+  .hero-panel {
+    padding-top: 24px;
+  }
+
+  .countdown-card {
+    padding: 16px;
+    border-radius: 26px;
+  }
+
+  .page-shell::before,
+  .page-shell::after {
+    display: none;
+  }
+}
+
+@media (max-width: 520px) {
+  .countdown-grid {
+    gap: 10px;
+  }
+
+  .time-block {
+    min-height: 132px;
+    border-radius: 20px;
+    padding: 18px 8px;
+  }
+
+  .time-block__value {
+    font-size: clamp(2.6rem, 13vw, 4.2rem);
+  }
+
+  .time-block__label {
+    font-size: 0.76rem;
+    letter-spacing: 0.14rem;
+  }
+
+  .trip-date {
+    font-size: 1rem;
+  }
+}
