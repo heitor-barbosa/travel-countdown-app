@@ -1,4 +1,7 @@
 import { useEffect, useState } from 'react'
+import pinIcon from './assets/alfinete.png'
+import regionIcon from './assets/brasil.png'
+import calendarIcon from './assets/calendario.png'
 import './App.css'
 
 const WEDDING = {
@@ -6,7 +9,6 @@ const WEDDING = {
   location: "Arraial d'Ajuda",
   region: 'Bahia, Brasil',
   venue: 'Casa da Praia',
-  dressCode: 'Esporte fino',
   dateLabel: '12 de setembro de 2026',
   targetDate: '2026-09-12T00:00:00-03:00',
 }
@@ -91,6 +93,12 @@ function App() {
     { label: 'Seg', value: timeLeft.seconds },
   ]
 
+  const eventFacts = [
+    { label: 'Data', value: WEDDING.dateLabel, icon: calendarIcon },
+    { label: 'Região', value: WEDDING.region, icon: regionIcon },
+    { label: 'Local', value: WEDDING.venue, icon: pinIcon },
+  ]
+
   return (
     <main className="page-shell">
       <header className="site-header">
@@ -116,30 +124,19 @@ function App() {
         <div className="hero-backdrop" aria-hidden="true"></div>
         <div className="hero-main">
           <div className="hero-copy">
-            {/* <span className="trip-pill">Casamento à beira-mar</span> */}
             <h1>{WEDDING.couple}</h1>
             <p className="hero-lead">
-              Contagem regressiva para celebrar em {WEDDING.location}, com os pés
-              na areia e clima de fim de tarde.
+              Bem-vindos à contagem regressiva do casamento de Letícia e André, em Arraial d'Ajuda.
             </p>
 
             <dl className="event-facts">
-              <div>
-                <dt>Data</dt>
-                <dd>{WEDDING.dateLabel}</dd>
-              </div>
-              <div>
-                <dt>Local</dt>
-                <dd>{WEDDING.venue}</dd>
-              </div>
-              <div>
-                <dt>Região</dt>
-                <dd>{WEDDING.region}</dd>
-              </div>
-              <div>
-                <dt>Traje</dt>
-                <dd>{WEDDING.dressCode}</dd>
-              </div>
+              {eventFacts.map((fact) => (
+                <div key={fact.label}>
+                  <img src={fact.icon} alt="" aria-hidden="true" />
+                  <dt>{fact.label}</dt>
+                  <dd>{fact.value}</dd>
+                </div>
+              ))}
             </dl>
           </div>
 
@@ -147,8 +144,6 @@ function App() {
             className="countdown-card"
             aria-label="Contagem regressiva para o casamento"
           >
-            <p className="countdown-card__eyebrow">Faltam</p>
-
             {timeLeft.isExpired ? (
               <div className="countdown-finished">
                 <p className="countdown-finished__badge">O grande dia chegou</p>
