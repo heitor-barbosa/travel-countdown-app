@@ -1,24 +1,25 @@
 :root {
-  --sand: #f8efe1;
-  --sand-deep: #efd6b1;
-  --foam: #f5fffd;
-  --sea: #5cccd5;
-  --teal: #1e8997;
-  --sea-deep: #11495a;
-  --sunset: #ff975b;
-  --sunset-deep: #ff7f50;
-  --muted: #5a6e78;
-  --text: #123744;
+  --foam: #fcf8f1;
+  --foam-strong: #fffdf8;
+  --sand: #efe5d5;
+  --water: #edf6f5;
+  --mint: #a5ded8;
+  --mint-deep: #82cfc5;
+  --sun: #e2c67f;
+  --ink: #40342d;
+  --ink-soft: #6b5b52;
+  --line: rgba(130, 207, 197, 0.34);
   --font-body: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
-  --font-display: Georgia, 'Times New Roman', serif;
+  --font-display: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
 
   font-family: var(--font-body);
   line-height: 1.5;
   font-weight: 400;
-  color: var(--text);
+  color: var(--ink);
   background:
-    radial-gradient(circle at top, rgba(255, 255, 255, 0.72), transparent 38%),
-    linear-gradient(180deg, #b8ebef 0%, #d9f7f8 24%, #f9e4be 66%, #f4c28f 100%);
+    radial-gradient(circle at top left, rgba(165, 222, 216, 0.28), transparent 34%),
+    radial-gradient(circle at top right, rgba(226, 198, 127, 0.18), transparent 24%),
+    linear-gradient(180deg, #fdfbf7 0%, #f8f6ef 44%, #f4efe6 100%);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -45,14 +46,8 @@ body::before {
   inset: 0;
   background:
     linear-gradient(135deg, rgba(255, 255, 255, 0.12), transparent 30%),
-    repeating-linear-gradient(
-      -14deg,
-      rgba(255, 255, 255, 0.08) 0,
-      rgba(255, 255, 255, 0.08) 2px,
-      transparent 2px,
-      transparent 18px
-    );
-  opacity: 0.35;
+    radial-gradient(circle at 10% 30%, rgba(165, 222, 216, 0.08), transparent 18%),
+    radial-gradient(circle at 92% 16%, rgba(226, 198, 127, 0.08), transparent 14%);
   pointer-events: none;
 }
 
@@ -73,25 +68,33 @@ select {
 
 h1,
 h2,
-p {
+h3,
+p,
+dl,
+dd {
   margin: 0;
 }
 
 h1,
 h2 {
   font-family: var(--font-display);
-  color: var(--sea-deep);
+  color: var(--ink);
+  font-weight: 400;
 }
 
 h1 {
   max-width: 10ch;
-  font-size: clamp(3rem, 7vw, 5.8rem);
-  line-height: 0.93;
-  letter-spacing: -0.2rem;
-  margin-bottom: 20px;
+  font-size: clamp(3.6rem, 8vw, 6.4rem);
+  line-height: 0.92;
+  letter-spacing: -0.18rem;
 }
 
 h2 {
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  line-height: 1;
   letter-spacing: -0.08rem;
+}
+
+section[id] {
+  scroll-margin-top: 110px;
 }
