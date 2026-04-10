@@ -16,25 +16,38 @@ const WEDDING = {
 const scheduleItems = [
   {
     date: '10/09',
-    title: 'Dia livre',
+    title: 'Dia Livre',
+    location: 'Rua do Mucugê e arredores',
+    dressCode: 'Livre',
     description:
-      'Chegada a Arraial e noite para conhecer a Rua do Mucugê no seu ritmo.',
+      'Chegada e exploração do charme noturno de Arraial na famosa rua do Mucugê. Desfrutem de Arraial como preferirem.',
+    notes: [],
   },
   {
     date: '11/09',
-    title: 'Beach day',
-    description:
-      'Recepção descontraída a partir das 14h, com roupas brancas de praia.',
+    title: 'Beach Day',
+    location: 'Ainda a definir',
+    dressCode: 'Roupas brancas de praia',
+    description: 'Aproveitem a manhã de sexta-feira na praia. Recepção descontraída a partir das 14h.',
+    notes: [
+      'Cada um será responsável pela sua comanda.',
+    ],
   },
   {
     date: '12/09',
     title: 'Casamento',
-    description: 'Celebração principal na Casa da Praia com traje esporte fino.',
+    location: 'Casa da Praia',
+    dressCode: 'Esporte fino',
+    description: 'O grande dia da celebração.',
+    notes: [],
   },
   {
     date: '13/09',
-    title: 'Dia da ressaca',
-    description: 'Descanso, reencontros e mais um dia para curtir o litoral.',
+    title: 'Dia da Ressaca',
+    location: 'Praia e arredores',
+    dressCode: 'Leve e confortável',
+    description: 'Dia de descanso. Vamos curtir a praia!',
+    notes: [],
   },
 ]
 
@@ -126,7 +139,8 @@ function App() {
           <div className="hero-copy">
             <h1>{WEDDING.couple}</h1>
             <p className="hero-lead">
-              Bem-vindos à contagem regressiva do casamento de Letícia e André, em Arraial d'Ajuda.
+              Uma contagem regressiva para o dia em que celebraremos amor, mar e
+              encontros inesquecíveis em Arraial d'Ajuda.
             </p>
 
             <dl className="event-facts">
@@ -165,24 +179,51 @@ function App() {
         </div>
       </section>
 
-      <section className="content-section" id="roteiro">
-        <div className="section-heading">
-          <p className="section-kicker">Roteiro</p>
+      <section className="content-section content-section--divided" id="roteiro">
+        <div className="section-heading section-heading--centered">
           <h2>Roteiro</h2>
+          <p className="section-kicker">10/09 - 14/09</p>
         </div>
 
-        <div className="schedule-grid">
-          {scheduleItems.map((item) => (
-            <article className="schedule-card" key={item.title}>
-              <p className="schedule-card__date">{item.date}</p>
-              <h3>{item.title}</h3>
-              <p>{item.description}</p>
-            </article>
-          ))}
+        <div className="timeline-shell">
+          <div className="timeline">
+            {scheduleItems.map((item, index) => (
+              <article
+                className={`timeline-item ${
+                  index % 2 === 0 ? 'timeline-item--top' : 'timeline-item--bottom'
+                }`}
+                key={item.title}
+              >
+                <div className="timeline-item__marker" aria-hidden="true"></div>
+                <div className="timeline-item__content">
+                  <p className="timeline-item__date">{item.date}</p>
+                  <h3>{item.title}</h3>
+                  <p className="timeline-item__description">{item.description}</p>
+
+                  <div className="timeline-item__meta">
+                    <p>
+                      <strong>Local:</strong> {item.location}
+                    </p>
+                    <p>
+                      <strong>Traje:</strong> {item.dressCode}
+                    </p>
+                  </div>
+
+                  {item.notes.length > 0 ? (
+                    <ul className="timeline-item__notes">
+                      {item.notes.map((note) => (
+                        <li key={note}>{note}</li>
+                      ))}
+                    </ul>
+                  ) : null}
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
-      <section className="content-section" id="hospedagem">
+      <section className="content-section content-section--divided" id="hospedagem">
         <div className="section-heading">
           <p className="section-kicker">Estadia</p>
           <h2>Sugestões de hospedagem</h2>
@@ -203,7 +244,10 @@ function App() {
         </div>
       </section>
 
-      <section className="content-section" id="deslocamento">
+      <section
+        className="content-section content-section--divided"
+        id="deslocamento"
+      >
         <div className="section-heading">
           <p className="section-kicker">Logística</p>
           <h2>Como chegar</h2>
