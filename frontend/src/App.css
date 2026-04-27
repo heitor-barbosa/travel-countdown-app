@@ -123,7 +123,7 @@
       rgba(26, 82, 102, 0.42) 32%,
       rgba(239, 225, 198, 0.08) 100%
     ),
-    url('./assets/praia-com-arvre.jpeg');
+    url('./assets/hero_card_images/praia-com-arvre.jpeg');
   background-size: cover;
   background-position: center;
 }
@@ -429,187 +429,198 @@
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
-.timeline {
-  position: relative;
-  width: min(1320px, calc(100vw - 64px));
-  min-height: 320px;
-  display: grid;
-  grid-template-columns: repeat(4, 300px);
-  grid-template-rows: 1fr 1fr;
-  justify-content: center;
-  column-gap: 18px;
-  row-gap: 26px;
-  align-items: stretch;
-}
-
-.timeline-shell {
-  width: 100%;
+.itinerary-shell {
+  width: min(1040px, 100%);
   margin: 0 auto;
-  padding: 8px 0 0;
-  overflow: visible;
-  display: flex;
-  justify-content: center;
 }
 
-.timeline::before {
+.itinerary-list {
+  position: relative;
+  display: grid;
+  gap: 22px;
+}
+
+.itinerary-list::before {
   content: '';
   position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  height: 3px;
-  transform: translateY(-50%);
+  left: 46px;
+  top: 44px;
+  bottom: 44px;
+  width: 2px;
   background: linear-gradient(
-    90deg,
-    rgba(95, 208, 199, 0.6),
-    rgba(79, 170, 164, 0.95),
-    rgba(95, 208, 199, 0.6)
+    180deg,
+    rgba(95, 208, 199, 0.18),
+    rgba(79, 170, 164, 0.78),
+    rgba(95, 208, 199, 0.18)
   );
-  border-radius: 999px;
-  box-shadow: 0 0 18px rgba(95, 208, 199, 0.18);
 }
 
-.timeline-item {
+.itinerary-item {
   position: relative;
-  display: flex;
-  justify-content: center;
-  min-height: 0;
-}
-
-.timeline-item:nth-child(1) {
-  grid-column: 1;
-}
-
-.timeline-item:nth-child(2) {
-  grid-column: 2;
-}
-
-.timeline-item:nth-child(3) {
-  grid-column: 3;
-}
-
-.timeline-item:nth-child(4) {
-  grid-column: 4;
-}
-
-.timeline-item__marker {
-  position: absolute;
-  left: 50%;
-  width: 20px;
-  height: 20px;
-  transform: translate(-50%, -50%);
-  border-radius: 999px;
-  background: linear-gradient(135deg, #5fd0c7, #edc161);
-  box-shadow:
-    0 0 0 3px rgba(95, 208, 199, 0.14),
-    0 8px 18px rgba(70, 121, 126, 0.18);
-  z-index: 2;
-}
-
-.timeline-item__content {
-  width: 300px;
-  padding: 18px 20px;
-  border-radius: 22px;
-  background: rgba(255, 253, 248, 0.96);
-  border: 1px solid rgba(178, 225, 220, 0.34);
-  box-shadow: 0 18px 42px rgba(108, 144, 142, 0.12);
-  position: relative;
-}
-
-.timeline-item--top {
-  grid-row: 1;
-  align-items: end;
-}
-
-.timeline-item--bottom {
-  grid-row: 2;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 92px minmax(0, 1fr);
+  gap: 22px;
   align-items: start;
 }
 
-.timeline-item--top .timeline-item__content {
-  margin-bottom: 14px;
-  text-align: left;
+.itinerary-item__rail {
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
 }
 
-.timeline-item--top .timeline-item__marker {
-  top: calc(100% + 15px);
+.itinerary-item__marker {
+  width: 58px;
+  min-height: 58px;
+  padding: 10px 8px;
+  border-radius: 999px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  background: linear-gradient(180deg, #f4fcfb, #dcf1ee);
+  border: 1px solid rgba(95, 208, 199, 0.45);
+  box-shadow:
+    0 0 0 6px rgba(95, 208, 199, 0.08),
+    0 12px 24px rgba(70, 121, 126, 0.12);
 }
 
-.timeline-item--bottom .timeline-item__content {
-  margin-top: 14px;
-  text-align: left;
-}
-
-.timeline-item--bottom .timeline-item__marker {
-  top: -13px;
-}
-
-.timeline-item--top .timeline-item__content::after,
-.timeline-item--bottom .timeline-item__content::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  width: 2px;
-  height: 28px;
-  transform: translateX(-50%);
-  background: linear-gradient(180deg, rgba(79, 170, 164, 0.7), rgba(95, 208, 199, 0.2));
-}
-
-.timeline-item--top .timeline-item__content::after {
-  top: 100%;
-}
-
-.timeline-item--bottom .timeline-item__content::after {
-  bottom: 100%;
-}
-
-.timeline-item__date {
+.itinerary-item__marker span {
   color: #4faaa4;
-  font-size: 0.8rem;
-  letter-spacing: 0.16rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.12rem;
   text-transform: uppercase;
   font-weight: 700;
-  margin-bottom: 12px;
 }
 
-.timeline-item__content h3 {
-  margin: 0 0 10px;
-  font-family: var(--font-display);
-  font-size: clamp(1.9rem, 2.9vw, 2.7rem);
-  line-height: 0.98;
+.itinerary-item__marker strong {
   color: var(--ink);
-  font-weight: 400;
+  font-size: 1.2rem;
+  line-height: 1;
 }
 
-.timeline-item__description {
-  color: var(--ink-soft);
-  font-size: 0.95rem;
-  line-height: 1.45;
-}
-
-.timeline-item__meta {
-  margin-top: 12px;
+.itinerary-item__card {
   display: grid;
-  gap: 5px;
+  grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
+  gap: 18px;
+  padding: 18px;
+  border-radius: 28px;
+  background: rgba(255, 253, 248, 0.96);
+  border: 1px solid rgba(178, 225, 220, 0.34);
+  box-shadow: 0 20px 44px rgba(108, 144, 142, 0.12);
 }
 
-.timeline-item__meta p {
-  color: var(--ink);
+.itinerary-item__media {
+  min-height: 240px;
 }
 
-.timeline-item__meta strong {
+.itinerary-item__image {
+  height: 100%;
+  min-height: 240px;
+  width: 100%;
+  border-radius: 22px;
+  object-fit: cover;
+  display: block;
+  box-shadow: 0 18px 32px rgba(108, 144, 142, 0.12);
+}
+
+.itinerary-item__content {
+  display: grid;
+  gap: 16px;
+  align-content: start;
+}
+
+.itinerary-item__header {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  align-items: start;
+}
+
+.itinerary-item__date {
   color: #4faaa4;
+  font-size: 0.82rem;
+  letter-spacing: 0.14rem;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  font-weight: 700;
 }
 
-.timeline-item__notes {
-  margin: 10px 0 0;
-  padding-left: 18px;
+.itinerary-item__description {
   color: var(--ink-soft);
+  font-size: 0.98rem;
+  line-height: 1.5;
+}
+
+.itinerary-item__tags {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.itinerary-item__tags span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 9px 12px;
+  border-radius: 999px;
+  background: #f3fbfa;
+  border: 1px solid rgba(95, 208, 199, 0.24);
+  color: #4f6d6f;
+  font-size: 0.84rem;
+  text-align: center;
+}
+
+.itinerary-item__agenda,
+.itinerary-item__notes {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.itinerary-item__agenda {
+  display: grid;
+  gap: 12px;
+}
+
+.itinerary-item__agenda li {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+  padding: 0 0 12px;
+  border-bottom: 1px solid rgba(178, 225, 220, 0.34);
+}
+
+.itinerary-item__agenda li:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.itinerary-item__agenda strong {
+  color: var(--ink);
   font-size: 0.92rem;
 }
 
-.timeline-item__notes li + li {
-  margin-top: 8px;
+.itinerary-item__agenda span {
+  color: var(--ink-soft);
+}
+
+.itinerary-item__notes {
+  display: grid;
+  gap: 8px;
+}
+
+.itinerary-item__notes li {
+  padding: 12px 14px;
+  border-radius: 16px;
+  background: rgba(243, 251, 250, 0.88);
+  color: #4f6d6f;
+  font-size: 0.92rem;
 }
 
 @media (max-width: 1024px) {
@@ -630,10 +641,8 @@
     grid-template-columns: 1fr;
   }
 
-  .timeline {
-    width: min(1180px, calc(100vw - 48px));
-    min-height: 290px;
-    grid-template-columns: repeat(4, 260px);
+  .itinerary-item__card {
+    grid-template-columns: minmax(200px, 240px) minmax(0, 1fr);
   }
 }
 
@@ -656,78 +665,45 @@
     padding: 28px 16px 42px;
   }
 
-  .timeline-shell {
-    width: auto;
-    margin: 0;
-    padding: 18px 0 8px;
-    overflow: visible;
-    display: block;
-  }
-
-  .timeline {
-    min-width: 0;
-    min-height: auto;
-    grid-template-columns: 1fr;
-    grid-template-rows: none;
-    row-gap: 30px;
-  }
-
-  .timeline::before {
+  .itinerary-list::before {
     left: 18px;
-    right: auto;
     top: 0;
     bottom: 0;
-    width: 2px;
-    height: auto;
-    transform: none;
-    background: linear-gradient(
-      180deg,
-      rgba(95, 208, 199, 0.4),
-      rgba(79, 170, 164, 0.82),
-      rgba(95, 208, 199, 0.4)
-    );
-    box-shadow: 0 0 12px rgba(95, 208, 199, 0.14);
   }
 
-  .timeline-item {
-    min-height: auto;
-    display: grid;
-    margin-bottom: 30px;
+  .itinerary-item {
+    grid-template-columns: 1fr;
+    gap: 14px;
   }
 
-  .timeline-item:last-child {
-    margin-bottom: 0;
+  .itinerary-item__rail {
+    justify-content: flex-start;
+    padding-top: 0;
   }
 
-  .timeline-item__marker {
-    top: 34px;
-    left: 18px;
-    transform: none;
-  }
-
-  .timeline-item__content,
-  .timeline-item--top .timeline-item__content,
-  .timeline-item--bottom .timeline-item__content {
+  .itinerary-item__marker {
     width: auto;
-    max-width: none;
-    margin: 0 0 0 48px;
-    text-align: left;
+    min-height: auto;
+    padding: 10px 16px;
+    border-radius: 999px;
+    flex-direction: row;
+    gap: 10px;
+    margin-left: 0;
   }
 
-  .timeline-item--top .timeline-item__content::after,
-  .timeline-item--bottom .timeline-item__content::after {
-    display: none;
+  .itinerary-item__card {
+    grid-template-columns: 1fr;
+    margin-left: 48px;
   }
 
-  .timeline-item:nth-child(1),
-  .timeline-item:nth-child(2),
-  .timeline-item:nth-child(3),
-  .timeline-item:nth-child(4),
-  .timeline-item--top,
-  .timeline-item--bottom {
-    grid-column: 1;
-    grid-row: auto;
-    align-items: stretch;
+  .itinerary-item__header {
+    flex-direction: column;
+  }
+
+  .itinerary-item__tags {
+    align-items: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
   }
 
   .countdown-grid {
@@ -759,5 +735,23 @@
 
   .time-block__value {
     font-size: clamp(2.8rem, 16vw, 4.4rem);
+  }
+
+  .itinerary-list::before {
+    display: none;
+  }
+
+  .itinerary-item__card {
+    margin-left: 0;
+    padding: 16px;
+  }
+
+  .itinerary-item__image {
+    min-height: 180px;
+  }
+
+  .itinerary-item__agenda li {
+    grid-template-columns: 1fr;
+    gap: 4px;
   }
 }
