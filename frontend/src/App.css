@@ -9,18 +9,71 @@
   position: absolute;
   inset: 0 0 auto;
   z-index: 30;
+  width: 100%;
+  transition:
+    opacity 220ms ease,
+    transform 220ms ease;
+}
+
+.site-header--compact {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  animation: header-slide-down 220ms ease;
+}
+
+.site-header--compact::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: var(--sticky-hero-height, 100vh);
+  background:
+    radial-gradient(circle at 18% 22%, rgba(255, 255, 255, 0.2), transparent 24%),
+    radial-gradient(circle at 82% 18%, rgba(255, 255, 255, 0.08), transparent 18%),
+    linear-gradient(
+      180deg,
+      rgba(247, 242, 231, 0.12) 0%,
+      rgba(15, 42, 57, 0.24) 18%,
+      rgba(20, 61, 79, 0.54) 52%,
+      rgba(13, 35, 44, 0.44) 100%
+    ),
+    linear-gradient(
+      110deg,
+      rgba(8, 24, 30, 0.84) 0%,
+      rgba(18, 60, 74, 0.48) 32%,
+      rgba(239, 225, 198, 0.08) 100%
+    ),
+    url('./assets/hero_card_images/praia-com-arvre.jpeg');
+  background-size: cover;
+  background-position: center;
+  transform: translateY(calc(-1 * var(--sticky-hero-offset, 0px)));
+  pointer-events: none;
+  z-index: 0;
 }
 
 .site-header__inner {
-  width: min(1180px, 100%);
+  width: min(1480px, calc(100% - 8px));
   margin: 0 auto;
-  padding: 24px 20px 0;
+  padding: 24px 10px 0;
   min-height: 104px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 20px;
   background: transparent;
+  position: relative;
+  z-index: 1;
+  transition:
+    min-height 220ms ease,
+    padding 220ms ease,
+    background-color 220ms ease,
+    border-color 220ms ease,
+    box-shadow 220ms ease,
+    backdrop-filter 220ms ease;
 }
 
 .brand {
@@ -28,13 +81,14 @@
   align-items: center;
   gap: 18px;
   text-decoration: none;
+  flex-shrink: 0;
 }
 
 .brand-mark {
   width: 82px;
   height: 82px;
   border-radius: 999px;
-  border: 2px solid rgba(244, 231, 204, 0.94);
+  border: 2px solid rgba(245, 231, 202, 0.96);
   background:
     radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.12), transparent 22%),
     rgba(7, 28, 34, 0.34);
@@ -43,7 +97,7 @@
     0 12px 30px rgba(4, 17, 23, 0.28);
   display: grid;
   place-items: center;
-  color: #f7ead1;
+  color: rgba(245, 231, 202, 0.96);
   font-family: var(--font-display);
   font-size: 1.9rem;
   letter-spacing: -0.08rem;
@@ -53,28 +107,40 @@
 
 .site-header__date {
   color: rgba(245, 231, 202, 0.88);
-  font-size: 0.84rem;
-  letter-spacing: 0.28rem;
+  font-size: 1rem;
+  letter-spacing: 0.32rem;
   text-transform: uppercase;
-  font-weight: 700;
+  font-weight: 800;
   line-height: 1;
-  text-shadow: 0 6px 18px rgba(7, 21, 28, 0.34);
+  text-shadow:
+    0 6px 18px rgba(7, 21, 28, 0.42),
+    0 0 18px rgba(245, 231, 202, 0.12);
+}
+
+.site-header__actions {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 34px;
 }
 
 .main-nav {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
-  gap: 24px;
+  gap: 30px;
 }
 
 .main-nav a {
   color: #f8f3e8;
   text-decoration: none;
-  font-size: 1.05rem;
-  font-weight: 600;
+  font-size: 0.93rem;
+  font-weight: 500;
   padding: 8px 0;
   position: relative;
+  text-transform: uppercase;
+  letter-spacing: 0.12rem;
   text-shadow: 0 4px 12px rgba(7, 21, 28, 0.3);
 }
 
@@ -93,6 +159,112 @@
 .main-nav a:hover::after,
 .main-nav a:focus-visible::after {
   opacity: 1;
+}
+
+.rsvp-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 18px;
+  border: 1px solid rgba(245, 231, 202, 0.82);
+  border-radius: 14px;
+  background: rgba(245, 231, 202, 0.94);
+  color: #1b2328;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.11rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.16),
+    0 10px 22px rgba(8, 24, 30, 0.12);
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    filter 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease;
+  white-space: nowrap;
+  backdrop-filter: blur(8px);
+}
+
+.rsvp-button:hover,
+.rsvp-button:focus-visible {
+  transform: translateY(-1px);
+  filter: brightness(1.015);
+  background: rgba(250, 239, 213, 0.98);
+  border-color: rgba(245, 231, 202, 0.96);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    0 14px 26px rgba(8, 24, 30, 0.16);
+}
+
+.rsvp-button__icon {
+  font-size: 1.5rem;
+  line-height: 1;
+  transform: translateY(-1px);
+}
+
+.site-header--compact .site-header__inner {
+  margin-top: 0;
+  padding: 14px 10px;
+  min-height: 84px;
+  border-radius: 0;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+.site-header--compact .brand {
+  gap: 14px;
+}
+
+.site-header--compact .brand-mark {
+  width: 62px;
+  height: 62px;
+  font-size: 1.45rem;
+}
+
+.site-header--compact .site-header__date {
+  font-size: 0.92rem;
+  letter-spacing: 0.28rem;
+}
+
+.site-header--compact .main-nav {
+  gap: 18px;
+}
+
+.site-header--compact .main-nav a {
+  font-size: 0.98rem;
+}
+
+.site-header--compact .site-header__actions {
+  gap: 30px;
+}
+
+.site-header--compact .rsvp-button {
+  padding: 11px 16px;
+  font-size: 0.76rem;
+  border-radius: 14px;
+}
+
+.site-header--compact .main-nav a {
+  font-size: 0.9rem;
+  letter-spacing: 0.11rem;
+}
+
+@keyframes header-slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .hero-panel {
@@ -653,13 +825,32 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 18px 20px 0;
+    padding: 18px 16px 0;
+  }
+
+  .site-header__actions {
+    width: 100%;
+    flex-direction: column;
+    gap: 14px;
   }
 
   .main-nav {
     width: 100%;
-    gap: 16px;
+    gap: 18px;
     justify-content: center;
+  }
+
+  .rsvp-button {
+    padding: 12px 18px;
+  }
+
+  .site-header--compact .site-header__inner {
+    margin-top: 0;
+    padding: 12px 14px;
+  }
+
+  .site-header--compact .site-header__actions {
+    gap: 12px;
   }
 
   .brand-mark {
@@ -670,6 +861,12 @@
 
   .hero-main {
     padding: 224px 16px 42px;
+  }
+
+  .site-header--compact .brand-mark {
+    width: 56px;
+    height: 56px;
+    font-size: 1.3rem;
   }
 
   .itinerary-list::before {
@@ -747,7 +944,20 @@
 
   .main-nav a {
     padding: 6px 0;
-    font-size: 0.95rem;
+    font-size: 0.88rem;
+    letter-spacing: 0.1rem;
+  }
+
+  .rsvp-button {
+    width: 100%;
+    justify-content: center;
+    font-size: 0.8rem;
+    letter-spacing: 0.06rem;
+  }
+
+  .site-header--compact .site-header__date {
+    font-size: 0.82rem;
+    letter-spacing: 0.22rem;
   }
 
   .itinerary-list::before {

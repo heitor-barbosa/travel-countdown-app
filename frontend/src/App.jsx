@@ -127,6 +127,7 @@ function getTimeLeft(targetDate) {
 
 function App() {
   const [timeLeft, setTimeLeft] = useState(() => getTimeLeft(WEDDING.targetDate))
+  const [isHeaderCompact, setIsHeaderCompact] = useState(false)
 
   useEffect(() => {
     const intervalId = window.setInterval(() => {
@@ -134,6 +135,34 @@ function App() {
     }, 1000)
 
     return () => window.clearInterval(intervalId)
+  }, [])
+
+  useEffect(() => {
+    const syncHeaderState = () => {
+      const heroSection = document.getElementById('inicio')
+      const root = document.documentElement
+
+      if (!heroSection) {
+        return
+      }
+
+      const { bottom } = heroSection.getBoundingClientRect()
+      const heroHeight = heroSection.offsetHeight
+      const stickyOffset = Math.max(0, Math.min(window.scrollY, heroHeight))
+
+      root.style.setProperty('--sticky-hero-height', `${heroHeight}px`)
+      root.style.setProperty('--sticky-hero-offset', `${stickyOffset}px`)
+      setIsHeaderCompact(bottom <= 140)
+    }
+
+    syncHeaderState()
+    window.addEventListener('scroll', syncHeaderState, { passive: true })
+    window.addEventListener('resize', syncHeaderState)
+
+    return () => {
+      window.removeEventListener('scroll', syncHeaderState)
+      window.removeEventListener('resize', syncHeaderState)
+    }
   }, [])
 
   const countdownUnits = [
@@ -151,7 +180,7 @@ function App() {
 
   return (
     <main className="page-shell">
-      <header className="site-header">
+      <header className={`site-header ${isHeaderCompact ? 'site-header--compact' : ''}`}>
         <div className="site-header__inner">
           <a className="brand" href="#inicio">
             <span className="brand-mark" aria-hidden="true">
@@ -160,12 +189,21 @@ function App() {
             <p className="site-header__date">12 . 09 . 2026</p>
           </a>
 
-          <nav className="main-nav" aria-label="Navegação principal">
-            <a href="#inicio">Início</a>
-            <a href="#roteiro">Roteiro</a>
-            <a href="#hospedagem">Hospedagem</a>
-            <a href="#deslocamento">Deslocamento</a>
-          </nav>
+          <div className="site-header__actions">
+            <nav className="main-nav" aria-label="Navegação principal">
+              <a href="#inicio">Início</a>
+              <a href="#roteiro">Roteiro</a>
+              <a href="#hospedagem">Hospedagem</a>
+              <a href="#deslocamento">Deslocamento</a>
+            </nav>
+
+            <button className="rsvp-button" type="button">
+              <span>Confirme sua presença</span>
+              <span className="rsvp-button__icon" aria-hidden="true">
+                ♡
+              </span>
+            </button>
+          </div>
         </div>
       </header>
 
