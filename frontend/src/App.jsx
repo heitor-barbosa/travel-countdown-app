@@ -10,6 +10,7 @@ import './App.css'
 
 const WEDDING = {
   couple: 'Letícia & André',
+  initials: 'L&A',
   location: "Arraial d'Ajuda",
   region: 'Bahia, Brasil',
   venue: 'Casa da Praia',
@@ -153,11 +154,10 @@ function App() {
       <header className="site-header">
         <div className="site-header__inner">
           <a className="brand" href="#inicio">
-            <span className="brand-mark" aria-hidden="true"></span>
-            <div className="brand-copy">
-              <p className="eyebrow">Casamento à beira-mar</p>
-              <strong>{WEDDING.couple}</strong>
-            </div>
+            <span className="brand-mark" aria-hidden="true">
+              {WEDDING.initials}
+            </span>
+            <p className="site-header__date">12 . 09 . 2026</p>
           </a>
 
           <nav className="main-nav" aria-label="Navegação principal">
