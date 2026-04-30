@@ -24,7 +24,6 @@ import './App.css'
 const WEDDING = {
   couple: 'Letícia & André',
   initials: 'L&A',
-  location: "Arraial d'Ajuda",
   region: 'Bahia, Brasil',
   venue: 'Casa da Praia',
   dateLabel: '12 de setembro de 2026',
@@ -101,51 +100,6 @@ const scheduleItems = [
   },
 ]
 
-const hotels = [
-  {
-    name: 'Saint Tropez Praia Hotel',
-    url: 'https://www.saint-tropez.com.br/',
-    location: "Arraial d'Ajuda, Bahia",
-    note: 'Opção citada no manual do convidado para quem quer pesquisar estadia em Arraial d’Ajuda.',
-    image: saintTropezImage,
-    imageAlt: 'Área externa do Saint Tropez Praia Hotel',
-    amenities: [
-      { label: 'Café da manhã', icon: cafeIcon },
-      { label: 'Piscina', icon: piscinaIcon },
-      { label: 'Spa', icon: spaIcon },
-      { label: 'Academia', icon: tenisIcon },
-    ],
-  },
-  {
-    name: 'Hotel Pousada Pitinga',
-    url: 'https://hotelpousadapitinga.com.br/',
-    location: "Arraial d'Ajuda, Bahia",
-    note: 'Hospedagem mencionada no manual com link oficial para consulta direta e comparação de disponibilidade.',
-    image: pitingaImage,
-    imageAlt: 'Fachada da Pousada Pitinga',
-    amenities: [
-      { label: 'Café da manhã', icon: cafeIcon },
-      { label: 'Piscina', icon: piscinaIcon },
-      { label: 'Wi-Fi', icon: wifiIcon },
-      { label: 'Lazer', icon: tenisIcon },
-    ],
-  },
-  {
-    name: 'Hotel Pousada Marambaia',
-    url: 'http://www.hotelmarambaia.com.br/',
-    location: "Arraial d'Ajuda, Bahia",
-    note: 'Mais uma alternativa reunida no manual para comparar estilo de hospedagem e localização antes da reserva.',
-    image: marambaiaImage,
-    imageAlt: 'Piscina da Pousada Marambaia',
-    amenities: [
-      { label: 'Café da manhã', icon: cafeIcon },
-      { label: 'Wi-Fi', icon: wifiIcon },
-      { label: 'Estacionamento', icon: estacionamentoIcon },
-      { label: 'Spa', icon: spaIcon },
-    ],
-  },
-]
-
 const stayHighlights = [
   {
     title: 'Próximas ao evento',
@@ -164,75 +118,30 @@ const stayHighlights = [
   },
 ]
 
-const staySuggestionsRaw = [
-  {
-    name: 'Saint Tropez Praia Hotel',
-    url: 'https://www.saint-tropez.com.br/',
-    location: 'Avenida Beira Mar, 1000',
-    note: 'Resort pÃ© na areia com infraestrutura completa, piscinas, restaurante e conforto para toda a famÃ­lia.',
-    image: saintTropezImage,
-    imageAlt: 'Ãrea externa do Saint Tropez Praia Hotel',
-    amenities: [
-      { label: 'CafÃ© da manhÃ£', icon: cafeIcon },
-      { label: 'Piscinas', icon: piscinaIcon },
-      { label: 'Spa', icon: spaIcon },
-      { label: 'Academia', icon: tenisIcon },
-    ],
-  },
-  {
-    name: 'Hotel Pousada Pitinga',
-    url: 'https://hotelpousadapitinga.com.br/',
-    location: 'Rua do MucugÃª, 125',
-    note: 'Pousada charmosa e acolhedora, no coraÃ§Ã£o do Arraial, perfeita para casais e momentos especiais.',
-    image: pitingaImage,
-    imageAlt: 'Fachada da Pousada Pitinga',
-    amenities: [
-      { label: 'CafÃ© da manhÃ£', icon: cafeIcon },
-      { label: 'Piscina', icon: piscinaIcon },
-      { label: 'Ar-condicionado', icon: tenisIcon },
-      { label: 'Wi-Fi', icon: wifiIcon },
-    ],
-  },
-  {
-    name: 'Hotel Pousada Marambaia',
-    url: 'http://www.hotelmarambaia.com.br/',
-    location: 'Rua da FalÃ©sia, 150',
-    note: 'Ambiente tranquilo e elegante, a poucos passos da praia e do centro histÃ³rico.',
-    image: marambaiaImage,
-    imageAlt: 'Piscina da Pousada Marambaia',
-    amenities: [
-      { label: 'CafÃ© da manhÃ£', icon: cafeIcon },
-      { label: 'Wi-Fi', icon: wifiIcon },
-      { label: 'Estacionamento', icon: estacionamentoIcon },
-      { label: 'Bar', icon: spaIcon },
-    ],
-  },
-]
-
 const staySuggestions = [
   {
     name: 'Saint Tropez Praia Hotel',
     url: 'https://www.saint-tropez.com.br/',
-    location: 'Avenida Beira Mar, 1000',
-    note: 'Resort p\u00E9 na areia com infraestrutura completa, piscinas, restaurante e conforto para toda a fam\u00EDlia.',
+    location: 'Estr. de Pitinga, 100',
+    note: 'Resort pé na areia com infraestrutura completa, piscinas, restaurante e conforto para toda a fam\u00EDlia.',
     image: saintTropezImage,
-    imageAlt: '\u00C1rea externa do Saint Tropez Praia Hotel',
+    imageAlt: 'Área externa do Saint Tropez Praia Hotel',
     amenities: [
-      { label: 'Caf\u00E9 da manh\u00E3', icon: cafeIcon },
-      { label: 'Piscinas', icon: piscinaIcon },
+      { label: 'Café da manhã', icon: cafeIcon },
+      { label: 'Piscina', icon: piscinaIcon },
       { label: 'Spa', icon: spaIcon },
-      { label: 'Academia', icon: tenisIcon },
+      { label: 'Quadra de tênis', icon: tenisIcon },
     ],
   },
   {
     name: 'Hotel Pousada Pitinga',
     url: 'https://hotelpousadapitinga.com.br/',
-    location: 'Rua do Mucug\u00EA, 125',
-    note: 'Pousada charmosa e acolhedora, no cora\u00E7\u00E3o do Arraial, perfeita para casais e momentos especiais.',
+    location: 'Hotel Pousada Pitinga Roteiros de Charme',
+    note: 'Pousada charmosa e acolhedora, no coração do Arraial, perfeita para casais e momentos especiais.',
     image: pitingaImage,
     imageAlt: 'Fachada da Pousada Pitinga',
     amenities: [
-      { label: 'Caf\u00E9 da manh\u00E3', icon: cafeIcon },
+      { label: 'Café da manhã', icon: cafeIcon },
       { label: 'Piscina', icon: piscinaIcon },
       { label: 'Ar-condicionado', icon: tenisIcon },
       { label: 'Wi-Fi', icon: wifiIcon },
@@ -241,12 +150,12 @@ const staySuggestions = [
   {
     name: 'Hotel Pousada Marambaia',
     url: 'http://www.hotelmarambaia.com.br/',
-    location: 'Rua da Fal\u00E9sia, 150',
-    note: 'Ambiente tranquilo e elegante, a poucos passos da praia e do centro hist\u00F3rico.',
+    location: 'Alameda dos Flamboyants, 116 - Centro',
+    note: 'Ambiente tranquilo e elegante, a poucos passos da praia e do centro histórico.',
     image: marambaiaImage,
     imageAlt: 'Piscina da Pousada Marambaia',
     amenities: [
-      { label: 'Caf\u00E9 da manh\u00E3', icon: cafeIcon },
+      { label: 'Café da manhã', icon: cafeIcon },
       { label: 'Wi-Fi', icon: wifiIcon },
       { label: 'Estacionamento', icon: estacionamentoIcon },
       { label: 'Bar', icon: spaIcon },
@@ -564,6 +473,65 @@ function App() {
           </article>
         </div>
       </section>
+
+      <footer className="site-footer">
+        <div className="site-footer__inner">
+          <div className="site-footer__top">
+            <div className="site-footer__brand-block">
+              <div className="site-footer__brand">
+                <span className="site-footer__brand-mark" aria-hidden="true">
+                  {WEDDING.initials}
+                </span>
+                <div>
+                  <p className="site-footer__eyebrow">Casamento</p>
+                  <h2>{WEDDING.couple}</h2>
+                </div>
+              </div>
+
+              <p className="site-footer__lead">
+                Nossa equipe est&aacute; &agrave; disposi&ccedil;&atilde;o para ajudar voc&ecirc;s com
+                reservas, orienta&ccedil;&otilde;es e detalhes finais da viagem para Arraial d&apos;Ajuda.
+              </p>
+
+              <div className="site-footer__meta">
+                <span>{WEDDING.dateLabel}</span>
+                <span>{WEDDING.region}</span>
+                <span>{WEDDING.venue}</span>
+              </div>
+            </div>
+
+            <div className="site-footer__panel">
+              <p className="site-footer__panel-title">Precisa de ajuda?</p>
+
+              <div className="site-footer__contacts">
+                <div>
+                  <strong>Contato</strong>
+                  <span>A'mar Eventos</span>
+                  <span>(73) 99858-3444 - Dayane</span>
+                  <span>(17) 99153-2924 - Grasi</span>
+                </div>
+
+                <a href="mailto:hospedagem@leticiaeandre.com">
+                  <strong>E-mail</strong>
+                  <span>hospedagem@leticiaeandre.com</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div className="site-footer__bottom">
+            <nav className="site-footer__nav" aria-label="Links do rodap&eacute;">
+              <a href="#inicio">In&iacute;cio</a>
+              <a href="#roteiro">Roteiro</a>
+              <a href="#hospedagem">Hospedagem</a>
+            </nav>
+
+            <p className="site-footer__note">
+              Feito para orientar os convidados e concentrar as informa&ccedil;&otilde;es principais do casamento.
+            </p>
+          </div>
+        </div>
+      </footer>
 
     </main>
   )
