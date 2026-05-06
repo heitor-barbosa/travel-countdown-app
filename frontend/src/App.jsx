@@ -6,12 +6,24 @@ import ruaDoMucugeImage from './assets/schedule_images/rua-do-mucuge.jpg'
 import sextaImage from './assets/schedule_images/sexta.jpg'
 import casamentoImage from './assets/schedule_images/casamento.jpg'
 import ressacaImage from './assets/schedule_images/ressaca.jpg'
+import lugarIcon from './assets/hospedagem_cards/lugar.png'
+import camaDeCasalIcon from './assets/hospedagem_cards/cama-de-casal.png'
+import suporteIcon from './assets/hospedagem_cards/suporte.png'
+import stayCalendarIcon from './assets/hotel_card_icons/calendario.png'
+import cafeIcon from './assets/hotel_card_icons/xicara-de-cafe.png'
+import piscinaIcon from './assets/hotel_card_icons/piscina.png'
+import spaIcon from './assets/hotel_card_icons/spa.png'
+import tenisIcon from './assets/hotel_card_icons/tenis.png'
+import wifiIcon from './assets/hotel_card_icons/sinal-de-wi-fi.png'
+import estacionamentoIcon from './assets/hotel_card_icons/carro-estacionado.png'
+import saintTropezImage from './assets/hotel_images/saint-tropez.jpg'
+import pitingaImage from './assets/hotel_images/Pousada-Pitinga-Bahia.jpg'
+import marambaiaImage from './assets/hotel_images/pousada-marambaia.webp'
 import './App.css'
 
 const WEDDING = {
   couple: 'Letícia & André',
   initials: 'L&A',
-  location: "Arraial d'Ajuda",
   region: 'Bahia, Brasil',
   venue: 'Casa da Praia',
   dateLabel: '12 de setembro de 2026',
@@ -88,19 +100,67 @@ const scheduleItems = [
   },
 ]
 
-const hotels = [
-  'Saint Tropez Praia Hotel',
-  'Hotel Pousada Pitanga',
-  'Hotel Pousada Marambaia',
-  'Hotel Boutique Kuara',
-  'Hotel Boutique Santa Aldeia',
+const stayHighlights = [
+  {
+    title: 'Próximas ao evento',
+    text: 'Todas as opções sugeridas ficam perto do local do casamento.',
+    icon: lugarIcon,
+  },
+  {
+    title: 'Para todos os estilos',
+    text: 'Opções de resorts, pousadas e hotéis boutique para diferentes preferências.',
+    icon: camaDeCasalIcon,
+  },
+  {
+    title: 'Dúvidas?',
+    text: 'Fale com nossa equipe se precisar de ajuda para escolher sua hospedagem.',
+    icon: suporteIcon,
+  },
 ]
 
-const flights = [
-  'Brasília (BSB) -> Porto Seguro (BPS)',
-  'São Paulo (GRU ou CGH) -> Porto Seguro (BPS)',
-  'Rio de Janeiro (GIG) -> Porto Seguro (BPS)',
-  'Belo Horizonte (CNF) -> Porto Seguro (BPS)',
+const staySuggestions = [
+  {
+    name: 'Saint Tropez Praia Hotel',
+    url: 'https://www.saint-tropez.com.br/',
+    location: 'Estr. de Pitinga, 100',
+    note: 'Resort pé na areia com infraestrutura completa, piscinas, restaurante e conforto para toda a fam\u00EDlia.',
+    image: saintTropezImage,
+    imageAlt: 'Área externa do Saint Tropez Praia Hotel',
+    amenities: [
+      { label: 'Café da manhã', icon: cafeIcon },
+      { label: 'Piscina', icon: piscinaIcon },
+      { label: 'Spa', icon: spaIcon },
+      { label: 'Quadra de tênis', icon: tenisIcon },
+    ],
+  },
+  {
+    name: 'Hotel Pousada Pitinga',
+    url: 'https://hotelpousadapitinga.com.br/',
+    location: 'Hotel Pousada Pitinga Roteiros de Charme',
+    note: 'Pousada charmosa e acolhedora, no coração do Arraial, perfeita para casais e momentos especiais.',
+    image: pitingaImage,
+    imageAlt: 'Fachada da Pousada Pitinga',
+    amenities: [
+      { label: 'Café da manhã', icon: cafeIcon },
+      { label: 'Piscina', icon: piscinaIcon },
+      { label: 'Ar-condicionado', icon: tenisIcon },
+      { label: 'Wi-Fi', icon: wifiIcon },
+    ],
+  },
+  {
+    name: 'Hotel Pousada Marambaia',
+    url: 'http://www.hotelmarambaia.com.br/',
+    location: 'Alameda dos Flamboyants, 116 - Centro',
+    note: 'Ambiente tranquilo e elegante, a poucos passos da praia e do centro histórico.',
+    image: marambaiaImage,
+    imageAlt: 'Piscina da Pousada Marambaia',
+    amenities: [
+      { label: 'Café da manhã', icon: cafeIcon },
+      { label: 'Wi-Fi', icon: wifiIcon },
+      { label: 'Estacionamento', icon: estacionamentoIcon },
+      { label: 'Bar', icon: spaIcon },
+    ],
+  },
 ]
 
 function getTimeLeft(targetDate) {
@@ -148,7 +208,13 @@ function App() {
 
       const { bottom } = heroSection.getBoundingClientRect()
       const heroHeight = heroSection.offsetHeight
-      const stickyOffset = Math.max(0, Math.min(window.scrollY, heroHeight))
+      const compactHeaderHeight = window.innerWidth <= 560
+        ? 104
+        : window.innerWidth <= 720
+          ? 108
+          : 112
+      const maxStickyOffset = Math.max(0, heroHeight - compactHeaderHeight)
+      const stickyOffset = Math.max(0, Math.min(window.scrollY, maxStickyOffset))
 
       root.style.setProperty('--sticky-hero-height', `${heroHeight}px`)
       root.style.setProperty('--sticky-hero-offset', `${stickyOffset}px`)
@@ -194,7 +260,6 @@ function App() {
               <a href="#inicio">Início</a>
               <a href="#roteiro">Roteiro</a>
               <a href="#hospedagem">Hospedagem</a>
-              <a href="#deslocamento">Deslocamento</a>
             </nav>
 
             <button className="rsvp-button" type="button">
@@ -314,62 +379,160 @@ function App() {
       </section>
 
       <section className="content-section content-section--divided" id="hospedagem">
-        <div className="section-heading">
-          <p className="section-kicker">Estadia</p>
-          <h2>Sugestões de hospedagem</h2>
-        </div>
+        <div className="stay-showcase">
+          <div className="stay-showcase__hero">
+            <h2>Hospedagem</h2>
+            <span className="stay-showcase__ornament" aria-hidden="true">♥</span>
+            <p className="stay-showcase__lead">
+              Selecionamos algumas opções de hospedagem em Arraial d'Ajuda
+              para que você tenha uma estadia confortável e aproveite cada momento.
+            </p>
+          </div>
 
-        <div className="info-card">
-          <p className="info-intro">
-            O manual indica liberdade total para escolher onde ficar em
-            Arraial d'Ajuda. Estas são algumas opções citadas para começar sua
-            busca.
-          </p>
-
-          <ul className="link-list">
-            {hotels.map((hotel) => (
-              <li key={hotel}>{hotel}</li>
+          <div className="stay-pillars">
+            {stayHighlights.map((item) => (
+              <article className="stay-pillar" key={item.title}>
+                <span className="stay-pillar__icon" aria-hidden="true">
+                  <img src={item.icon} alt="" />
+                </span>
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </article>
             ))}
-          </ul>
-        </div>
-      </section>
+          </div>
 
-      <section
-        className="content-section content-section--divided"
-        id="deslocamento"
-      >
-        <div className="section-heading">
-          <p className="section-kicker">Logística</p>
-          <h2>Como chegar</h2>
-        </div>
+          <div className="stay-suggestions">
+            <div className="stay-suggestions__header">
+              <h3>Nossas sugestões</h3>
+              <span className="stay-suggestions__ornament" aria-hidden="true">♥</span>
+              <p>Opções selecionadas com carinho para receber você em Arraial d’Ajuda.</p>
+            </div>
 
-        <div className="travel-grid">
-          <article className="info-card">
-            <h3>Voos</h3>
-            <ul className="link-list">
-              {flights.map((flight) => (
-                <li key={flight}>{flight}</li>
+            <div className="stay-hotel-grid">
+              {staySuggestions.map((hotel) => (
+                <article className="stay-hotel-card" key={hotel.name}>
+                  <div className="stay-hotel-card__media">
+                    <img src={hotel.image} alt={hotel.imageAlt} className="stay-hotel-card__image" />
+                  </div>
+
+                  <div className="stay-hotel-card__body">
+                    <h3>{hotel.name}</h3>
+
+                    <div className="stay-hotel-card__stars" aria-hidden="true">
+                      <span>★</span>
+                      <span>★</span>
+                      <span>★</span>
+                      <span>★</span>
+                      <span>★</span>
+                    </div>
+
+                    <p className="stay-hotel-card__location">
+                      <img src={lugarIcon} alt="" aria-hidden="true" />
+                      <span>{hotel.location}</span>
+                    </p>
+
+                    <p className="stay-hotel-card__text">{hotel.note}</p>
+
+                    <div className="stay-hotel-card__tags">
+                      {hotel.amenities.map((amenity) => (
+                        <span key={`${hotel.name}-${amenity.label}`}>
+                          <img src={amenity.icon} alt="" aria-hidden="true" />
+                          <span>{amenity.label}</span>
+                        </span>
+                      ))}
+                    </div>
+
+                    <a
+                      className="stay-hotel-card__link"
+                      href={hotel.url}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <span>Ver detalhes e reservar</span>
+                      <span aria-hidden="true">↗</span>
+                    </a>
+                  </div>
+                </article>
               ))}
-            </ul>
-          </article>
+            </div>
+          </div>
 
-          <article className="info-card">
-            <h3>Transfer</h3>
-            <p>
-              O manual recomenda considerar transfer privativo entre o aeroporto
-              e Arraial d'Ajuda, principalmente para mais conforto na chegada.
-            </p>
-          </article>
-
-          <article className="info-card">
-            <h3>Aluguel de carro</h3>
-            <p>
-              Vale para quem quer mais flexibilidade durante a estadia e pensa
-              em explorar praias e arredores com calma.
-            </p>
+          <article className="stay-tip-card">
+            <div className="stay-tip-card__icon" aria-hidden="true">
+              <img src={stayCalendarIcon} alt="" />
+            </div>
+            <div>
+              <p className="stay-tip-card__label">Dica importante</p>
+              <p className="stay-tip-card__text">
+                Arraial d'Ajuda é um destino muito procurado, especialmente em setembro.
+                Recomendamos reservar sua hospedagem com antecedência para garantir
+                as melhores opções e tarifas.
+              </p>
+            </div>
+            <div className="stay-tip-card__leaf" aria-hidden="true"></div>
           </article>
         </div>
       </section>
+
+      <footer className="site-footer">
+        <div className="site-footer__inner">
+          <div className="site-footer__top">
+            <div className="site-footer__brand-block">
+              <div className="site-footer__brand">
+                <span className="site-footer__brand-mark" aria-hidden="true">
+                  {WEDDING.initials}
+                </span>
+                <div>
+                  <p className="site-footer__eyebrow">Casamento</p>
+                  <h2>{WEDDING.couple}</h2>
+                </div>
+              </div>
+
+              <p className="site-footer__lead">
+                Nossa equipe est&aacute; &agrave; disposi&ccedil;&atilde;o para ajudar voc&ecirc;s com
+                reservas, orienta&ccedil;&otilde;es e detalhes finais da viagem para Arraial d&apos;Ajuda.
+              </p>
+
+              <div className="site-footer__meta">
+                <span>{WEDDING.dateLabel}</span>
+                <span>{WEDDING.region}</span>
+                <span>{WEDDING.venue}</span>
+              </div>
+            </div>
+
+            <div className="site-footer__panel">
+              <p className="site-footer__panel-title">Precisa de ajuda?</p>
+
+              <div className="site-footer__contacts">
+                <div>
+                  <strong>Contato</strong>
+                  <span>A'mar Eventos</span>
+                  <span>(73) 99858-3444 - Dayane</span>
+                  <span>(17) 99153-2924 - Grasi</span>
+                </div>
+
+                <a href="mailto:hospedagem@leticiaeandre.com">
+                  <strong>E-mail</strong>
+                  <span>hospedagem@leticiaeandre.com</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div className="site-footer__bottom">
+            <nav className="site-footer__nav" aria-label="Links do rodap&eacute;">
+              <a href="#inicio">In&iacute;cio</a>
+              <a href="#roteiro">Roteiro</a>
+              <a href="#hospedagem">Hospedagem</a>
+            </nav>
+
+            <p className="site-footer__note">
+              Feito para orientar os convidados e concentrar as informa&ccedil;&otilde;es principais do casamento.
+            </p>
+          </div>
+        </div>
+      </footer>
+
     </main>
   )
 }
