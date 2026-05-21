@@ -32,7 +32,7 @@ O projeto simula uma página real para convidados, reunindo informações import
 ### Backend
 
 - Django
-- PostgreSQL configurado via variáveis de ambiente
+- PostgreSQL
 
 
 ## 📁 Estrutura do projeto
@@ -142,8 +142,3 @@ Aplicação focada em experiência do usuário e organização visual de informa
 - Persistência de dados em banco
 
 ---
-
-## 👨‍💻 Autor
-
-Heitor Barbosa Souza  
-Desenvolvedor focado em aplicações web modernas, com experiência em backend e evolução para frontend com React e TypeScript.
